@@ -1,0 +1,199 @@
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  /* // Disable Text Selection */
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.glitch {
+  color: white;
+  position: relative;
+  margin: 0 auto;
+}
+
+@keyframes noise-anim {
+  0%, 100% {
+    clip: rect(99px, 9999px, 46px, 0);
+  }
+  5% {
+    clip: rect(5px, 9999px, 39px, 0);
+  }
+  10% {
+    clip: rect(40px, 9999px, 16px, 0);
+  }
+  15% {
+    clip: rect(35px, 9999px, 50px, 0);
+  }
+  20% {
+    clip: rect(30px, 9999px, 18px, 0);
+  }
+  /* Add more percentage steps here */
+}
+
+.glitch:after {
+  content: attr(data-text);
+  position: absolute;
+  left: 1px;
+  text-shadow: -1px 0 red;
+  top: 0;
+  color: white;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: noise-anim 2s infinite linear alternate-reverse;
+}
+
+@keyframes noise-anim-2 {
+  0%, 100% {
+    clip: rect(90px, 9999px, 23px, 0);
+  }
+  5% {
+    clip: rect(56px, 9999px, 47px, 0);
+  }
+  10% {
+    clip: rect(31px, 9999px, 46px, 0);
+  }
+  15% {
+    clip: rect(50px, 9999px, 27px, 0);
+  }
+  20% {
+    clip: rect(41px, 9999px, 37px, 0);
+  }
+  /* Add more percentage steps here */
+}
+
+.glitch:before {
+  content: attr(data-text);
+  position: absolute;
+  left: -1px;
+  text-shadow: 1px 0 blue;
+  top: 0;
+  color: white;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: noise-anim-2 3s infinite linear alternate-reverse;
+}
+
+:root,
+body,
+html {
+  background-color: black;
+  box-sizing: border-box;
+}
+
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+html,
+i,
+img,
+label,
+li,
+nav,
+p,
+small,
+span,
+ul {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  /* text-decoration: none; */
+}
+.custom-font {
+  font-family: "VT323", monospace;
+}
+body {
+  font-family: Arial, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 80%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 0.2 0.6% 17.5%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 0.2 0.6% 0.5%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+
+    --ring: 217.2 32.6% 17.5%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
