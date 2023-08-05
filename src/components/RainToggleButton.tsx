@@ -21,9 +21,13 @@ const RainToggleButton: React.FC = () => {
   };
 
   return (
-      <div title="Toggle Rain" className="text-neutral-500 hover:text-white transition-all duration-300 cursor-pointer" onClick={rainButtonHandler}>
-        {rainValue === 0 ? <Icon.FaDroplet /> : <Icon.FaDropletSlash />}
-      </div>
+    <div
+      title="Toggle Rain"
+      className="text-neutral-500 hover:text-white transition-all duration-300 cursor-pointer"
+      onClick={rainButtonHandler}
+    >
+      {rainValue === 0 ? <Icon.FaDropletSlash /> : <Icon.FaDroplet />}
+    </div>
   );
 };
 

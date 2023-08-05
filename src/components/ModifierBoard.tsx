@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../redux/reducers"; // Assuming you have a store with RootState defined
+import { RootState } from "../redux/reducers"; 
 import { Label } from "./ui/label";
 import { Slider } from "./ui/slider";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -17,7 +16,7 @@ import { changeVolume } from "../redux/actions";
 import ReactAudioPlayer from "react-audio-player";
 import * as Icon from "react-icons/fa6";
 
-const ModifierBoard: React.FC = () => {
+const ModifierBoard = () => {
   const dispatch = useDispatch();
   const rainData = useSelector((state: RootState) => state.rainState);
   const volumeData = useSelector((state: RootState) => state.volumeState);
@@ -43,7 +42,22 @@ const ModifierBoard: React.FC = () => {
     dispatch(changeVolume(e));
   };
 
-  const SheetDemo = () => {
+  const muteAllNoise = () => {
+    setCityTraffic(0);
+    setCityRain(0);
+    setFireplace(0);
+    setSnow(0);
+    setFan(0);
+    setForestNight(0);
+    setWave(0);
+    setWind(0);
+    setPeople(0);
+    setRiver(0);
+    setRainForest(0);
+    setSummerStorm(0);
+  };
+
+  const MoodSheet = () => {
     return (
       <Sheet open={openMood} onOpenChange={setOpenMood}>
         <SheetTrigger asChild>
@@ -54,17 +68,23 @@ const ModifierBoard: React.FC = () => {
         <SheetContent>
           <SheetHeader>
             <SheetTitle>Settings</SheetTitle>
-            <SheetDescription>
-              <div className="grid grid-cols-3 items-center gap-4">
-                <Label htmlFor="width">Volume</Label>
-                <Slider
-                  className="col-span-2"
-                  value={[volumeValue]}
-                  onValueChange={(e) => changeVolumeHandler(e[0])}
-                />
-              </div>
-            </SheetDescription>
           </SheetHeader>
+          <div className="flex flex-col gap-4 pt-4">
+            <div className="grid grid-cols-3 items-center gap-4">
+              <Label htmlFor="width">Volume</Label>
+              <Slider
+                className="col-span-2"
+                value={[volumeValue]}
+                onValueChange={(e) => changeVolumeHandler(e[0])}
+              />
+            </div>
+            <div className="grid grid-cols-3 items-center gap-4">
+              <Label htmlFor="width">Mute all noise</Label>
+              <div onClick={muteAllNoise}>
+                <Icon.FaVolumeXmark />
+              </div>
+            </div>
+          </div>
           <div className="font-bold py-1 mt-5">Background Noise</div>
           <div className="grid gap-4 py-2">
             <div className="grid grid-cols-3 items-center gap-4">
@@ -169,97 +189,105 @@ const ModifierBoard: React.FC = () => {
     );
   };
 
+  const NoisePlayer = () => {
+    return (
+      <>
+        <ReactAudioPlayer
+          preload="auto"
+          autoPlay
+          src="./assets/musics/rain_city.mp3"
+          loop
+          volume={rainValue / 100}
+        />
+        <ReactAudioPlayer
+          preload="auto"
+          autoPlay
+          src="./assets/musics/fireplace.mp3"
+          loop
+          volume={fireplace / 100}
+        />
+        <ReactAudioPlayer
+          preload="auto"
+          autoPlay
+          src="./assets/musics/snow.mp3"
+          loop
+          volume={snow / 100}
+        />
+        <ReactAudioPlayer
+          preload="auto"
+          autoPlay
+          src="./assets/musics/summer_storm.mp3"
+          loop
+          volume={summerStorm / 100}
+        />
+        <ReactAudioPlayer
+          preload="auto"
+          autoPlay
+          src="./assets/musics/fan.mp3"
+          loop
+          volume={fan / 100}
+        />
+        <ReactAudioPlayer
+          preload="auto"
+          autoPlay
+          src="./assets/musics/forest_night.mp3"
+          loop
+          volume={forestNight / 100}
+        />
+        <ReactAudioPlayer
+          preload="auto"
+          autoPlay
+          src="./assets/musics/waves.mp3"
+          loop
+          volume={wave / 100}
+        />
+        <ReactAudioPlayer
+          preload="auto"
+          autoPlay
+          src="./assets/musics/wind.mp3"
+          loop
+          volume={wind / 100}
+        />
+        <ReactAudioPlayer
+          preload="auto"
+          autoPlay
+          src="./assets/musics/people_talk_inside.mp3"
+          loop
+          volume={people / 100}
+        />
+        <ReactAudioPlayer
+          preload="auto"
+          autoPlay
+          src="./assets/musics/river.mp3"
+          loop
+          volume={river / 100}
+        />
+        <ReactAudioPlayer
+          preload="auto"
+          autoPlay
+          src="./assets/musics/rain_forest.mp3"
+          loop
+          volume={rainForest / 100}
+        />
+        <ReactAudioPlayer
+          preload="auto"
+          autoPlay
+          src="./assets/musics/city_traffic.mp3"
+          loop
+          volume={cityTraffic / 100}
+        />
+      </>
+    );
+  }
+  
   useEffect(() => {
     document.documentElement.classList.add("dark");
   }, []);
 
   return (
     <>
-      <SheetDemo />
-      <ReactAudioPlayer
-        preload="auto"
-        autoPlay
-        src="./assets/musics/rain_city.mp3"
-        loop
-        volume={rainValue / 100}
-      />
-      <ReactAudioPlayer
-        preload="auto"
-        autoPlay
-        src="./assets/musics/fireplace.mp3"
-        loop
-        volume={fireplace / 100}
-      />
-      <ReactAudioPlayer
-        preload="auto"
-        autoPlay
-        src="./assets/musics/snow.mp3"
-        loop
-        volume={snow / 100}
-      />
-      <ReactAudioPlayer
-        preload="auto"
-        autoPlay
-        src="./assets/musics/summer_storm.mp3"
-        loop
-        volume={summerStorm / 100}
-      />
-      <ReactAudioPlayer
-        preload="auto"
-        autoPlay
-        src="./assets/musics/fan.mp3"
-        loop
-        volume={fan / 100}
-      />
-      <ReactAudioPlayer
-        preload="auto"
-        autoPlay
-        src="./assets/musics/forest_night.mp3"
-        loop
-        volume={forestNight / 100}
-      />
-      <ReactAudioPlayer
-        preload="auto"
-        autoPlay
-        src="./assets/musics/waves.mp3"
-        loop
-        volume={wave / 100}
-      />
-      <ReactAudioPlayer
-        preload="auto"
-        autoPlay
-        src="./assets/musics/wind.mp3"
-        loop
-        volume={wind / 100}
-      />
-      <ReactAudioPlayer
-        preload="auto"
-        autoPlay
-        src="./assets/musics/people_talk_inside.mp3"
-        loop
-        volume={people / 100}
-      />
-      <ReactAudioPlayer
-        preload="auto"
-        autoPlay
-        src="./assets/musics/river.mp3"
-        loop
-        volume={river / 100}
-      />
-      <ReactAudioPlayer
-        preload="auto"
-        autoPlay
-        src="./assets/musics/rain_forest.mp3"
-        loop
-        volume={rainForest / 100}
-      />
-      <ReactAudioPlayer
-        preload="auto"
-        autoPlay
-        src="./assets/musics/city_traffic.mp3"
-        loop
-        volume={cityTraffic / 100}
-      />
+      <MoodSheet />
+      <NoisePlayer/>
     </>
   );
 };

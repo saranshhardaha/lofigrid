@@ -19,7 +19,9 @@ const Header: React.FC = () => {
 
   return (
     <nav className="absolute z-10 top-0 left-0 w-full flex items-center justify-between gap-4 p-4 text-white bg-black/5 backdrop-blur-sm font-mono">
-      <Link to="/" className="custom-font text-xl leading-8">Lofi Grid</Link>
+      <Link to="/" className="custom-font text-xl leading-8">
+        Lofi Grid
+      </Link>
       <div className="flex items-center justify-center gap-4 text-neutral-300">
         <a
           target="_blank"
