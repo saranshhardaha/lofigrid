@@ -5,7 +5,7 @@ import Footer from "./Footer";
 const Home: React.FC = () => {
   return (
     <div className="relative h-full w-full ">
-      <div className="z-20  absolute h-screen w-full grid place-content-center font-mono text-6xl custom-font text-white/60 drop-shadow-md top-40">
+      <div className="z-20  absolute h-[100svh] w-full grid place-content-center font-mono text-6xl custom-font text-white/60 drop-shadow-md top-40">
         <p className="glitch" data-text="LOFI GRID">
           LOFI GRID
         </p>
